@@ -1,0 +1,29 @@
+﻿@model ProjetoVeterinaria.Models.modelAnimal
+@{
+    ViewBag.Title = "Cadastro Animal";
+}
+
+<h2>Cadastro de Animal</h2>
+
+@using (Html.BeginForm("cadAnimal", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(m => m.nomeAnimal) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
+    <br />
+    @Html.EditorFor(m => m.nomeAnimal)
+    <br />
+    @Html.Label("Escolha o tipo de Animal");
+    <br />
+    @Html.DropDownList("TipoAnimal", "Tipo Animal");
+    <br />
+    @Html.Label("Escolha a foto do animal");
+    <br />
+    <input type="file" name="file" id="file" />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

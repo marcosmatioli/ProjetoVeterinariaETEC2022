@@ -1,0 +1,25 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelMedico
+
+@{
+    ViewBag.Title = "CadMedico";
+}
+
+<h2>Cadastro de Médicos</h2>
+
+
+@using (Html.BeginForm("CadMedico", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Nome do Medico");
+    <br />
+    <br />
+    @Html.EditorFor(m => m.nomeMedico);
+    <br />
+    <br />
+    @Html.DropDownList("Especialidade", "Escolha a especialidade");
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

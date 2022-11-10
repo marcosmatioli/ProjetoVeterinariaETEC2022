@@ -1,0 +1,41 @@
+﻿@*@model IEnumerable<ProjetoVeterinaria.Models.modelAnimal>
+
+@{
+    ViewBag.Title = "Lista de Pets";
+}
+
+<h2>Lista dos Pets</h2>
+
+<div class="">
+    <div class="row center">
+        <div class="col-lg-9">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 mb-4" style="margin:2% 4%">
+                        <div class="card h-100">
+                            <a href="/Produto/Detalhes/@item.codAnimal">
+                                @if (@item.fotoAnimal != null)
+                                {<img class="card-img-right flex-auto d-none d-md-block" data-src=" " alt="Thumbnail [300x300]" style="width: 300px; height: 300px;" src="@item.fotoAnimal" data-holder-rendered="true">}
+                                else
+                                {<img class="card-img-right flex-auto d-none d-md-block" data-src=" " alt="Thumbnail [300x300]" style="width: 300px; height: 300px;" src="~/Imagens/image-not-found.jpg" data-holder-rendered="true">}
+                            </a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="@item.fotoAnimal">Nome do Pet: @item.nomeAnimal</a>
+                                </h4>
+                                <h5>Codigo Cliente: @item.codCliente</h5>
+                                <h5>Nome Cliente: @item.nomeCliente</h5>
+                            </div>
+                            <div class="card-footer space-between-flex" style="width:90%">
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>*@
+
+

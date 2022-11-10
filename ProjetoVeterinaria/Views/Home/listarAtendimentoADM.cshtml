@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ProjetoVeterinaria.Models.modelAtendimento>
+@{
+    ViewBag.Title = "Lista de Atendimento";
+}
+
+<h2>Lista dos Atendimentos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.codAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.dataAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.horaAtendimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Diagnostico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.nomeVet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.nomeAnimal)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaAtendimento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diagnostico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeVet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeVet)
+            </td>
+            <td>
+                <!--precisa ver se vai  ter algo de excluir ou atualizar-->
+                @Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |
+                @Html.ActionLink("Excluir", "", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model ProjetoVeterinaria.Models.modelCliente
+
+@{
+    ViewBag.Title = "editarCliente";
+}
+
+<h2>Editar Cliente Cliente</h2>
+
+@using (Html.BeginForm("editarCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(m => m.nomeCliente) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
+    <br />
+    @Html.EditorFor(m => m.nomeCliente)
+    <br />
+    @Html.LabelFor(m => m.telefoneCliente)
+    <br />
+    @Html.EditorFor(m => m.telefoneCliente)
+    <br />
+    @Html.LabelFor(m => m.cepCliente)
+    <br />
+    @Html.EditorFor(m => m.cepCliente)
+    <br />
+    @Html.LabelFor(m => m.enderecoCliente)
+    <br />
+    @Html.EditorFor(m => m.enderecoCliente)
+    <br />
+    @Html.LabelFor(m => m.usuario)
+    <br />
+    @Html.EditorFor(m => m.usuario)
+    <br />
+    @Html.LabelFor(m => m.senha)
+    <br />
+    @Html.EditorFor(m => m.senha)
+    <br />
+    <br />
+    <input type="submit" value="Atualizar Cadastro" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

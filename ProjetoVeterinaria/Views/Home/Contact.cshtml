@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Usuario Normal";
+}
+<!--PAGINA PARA USUARIO NORMAL-->
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<div class="jumbotron">
+    <h1>Clinica Veterinaria</h1>
+    <p class="lead">O melhor para o seu pet é aqui!!</p>
+
+    <p>@Html.ActionLink("Cadastro de Animal (Com Cadastro de Foto)", "cadAnimal")</p>
+
+    <p>@Html.ActionLink("Alterar Cliente (Somente para o cliente)", "editarCliente")</p>
+
+    <p>@Html.ActionLink("Cadastrar Agendamento (Para o cliente)", "cadAgendamento")</p>
+
+    <p>@Html.ActionLink("Listar de Animal do usuario (com Editar para usuario e só vai aparecer o pet do usuario em questão)", "ListarAnimalUsuario")</p>
+
+    <p>@Html.ActionLink("Listar Agendamentos (do usuario logado / mas tem o listar todos os agendamentos para o ADM)", "listarAgendamento")</p>
+
+    <p>@Html.ActionLink("Listar todos os atendimentos do usuario logado", "listarAtendimento")</p>
+
+</div>
+<br />
+<br />
+@if (Session["tipoLogado"].ToString() == "1")
+{
+    <p>Acessar recursos de ADM</p>
+    @Html.ActionLink("Recurso ADM", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })
+}

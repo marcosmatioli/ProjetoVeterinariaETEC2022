@@ -1,0 +1,42 @@
+﻿@model ProjetoVeterinaria.Models.modelAgendamento
+
+@{
+    ViewBag.Title = "Agendamento de consulta do Animal";
+}
+
+@using (Html.BeginForm("cadAgendamento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+    @Html.Label("Agendar consulta para o animal")
+    <br />
+    <br />
+    @Html.Label("Selecione o seu Veterinario que irá atender")
+    <br />
+    @Html.DropDownList("Vet", "Escolha o Veterinario");
+    <br />
+    <br />
+    @Html.Label("Escolha o animal a ser atendido")
+    <br />
+    @Html.DropDownList("Animal", "Escolha o Animal");
+    <br />
+    <br />
+    @Html.Label("Data da consulta");
+    <br />
+    @Html.EditorFor(m => m.dataAgendamento, new { htmlAttributes = new { @type = "date" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Hora da consulta");
+    <br />
+    @Html.EditorFor(m => m.horaAgendamento, new { htmlAttributes = new { @type = "time" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Reclamação do animal");
+    <br />
+    @Html.EditorFor(m => m.Reclamacao);
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar Agendamento Veterinario" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.Message

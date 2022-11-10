@@ -1,0 +1,23 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelEspecialidade
+
+@{
+    ViewBag.Title = "CadEspecialidade";
+}
+
+<h2>Cadastro da Especialidade</h2>
+@using (Html.BeginForm("CadEspecialidade", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(m => m.Especialidade)
+    <br />
+    @Html.EditorFor(m => m.Especialidade)
+    <br />
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg
+
+
+

@@ -1,0 +1,37 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelConsultar
+
+@{
+    ViewBag.Title = "ConsultarTudo";
+
+    List<string> tablesConsult = new List<string>();
+
+    tablesConsult.Add("vwEspecialidade");
+
+    tablesConsult.Add("vwMedico");
+
+    tablesConsult.Add("vwPaciente");
+
+    tablesConsult.Add("vwAtendimento");
+
+    tablesConsult.Add("vwAgendamento");
+
+}
+
+<h2>Consultar Tabelas - ADM Resource</h2>
+@using (Html.BeginForm("ConsultarTudo", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Selecione a tabela que deseja visualizar")
+    <br />
+    @Html.DropDownListFor(m => m.Tablenome, new MultiSelectList(tablesConsult))
+    <br />
+    <br />
+    <input type="submit" value="Consultar Tabela" class="btn btn-primary" />
+    <br />
+}
+<br />
+<br />
+@ViewBag.msg
+<br />
+<br />
+@Html.Raw(ViewBag.GridViewString)
+

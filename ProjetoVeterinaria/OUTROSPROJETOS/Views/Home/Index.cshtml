@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Clinica Matioli</h1>
+    <p class="lead">Clinica Matioli, trazendo para você o melhor para sua saúde.</p>
+    <p>
+        
+
+        <a href="" class="">
+
+            @Html.ActionLink("Cadastro da Especialidade", "CadEspecialidade", "Clinica")
+            <br />
+            @Html.ActionLink("Cadastro do Médico", "CadMedico", "Clinica")
+            <br />
+            @Html.ActionLink("Cadastro do Paciente", "CadPaciente", "Clinica")
+            <br />
+            @Html.ActionLink("Agendar Consulta", "cadAgendamento", "Clinica")
+            <br />
+            @Html.ActionLink("Atendimento Medico", "CadAtendimento", "Clinica")
+            <br />
+            @Html.ActionLink("Consultar Tabelas - ADM", "ConsultarTudo", "Clinica")
+            <br />
+        </a>
+    </p>
+    
+    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Texto 1</h2>
+        <p>Paragrafo 1</p>
+        <p><a class="btn btn-default" href=""> </a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Texto 2</h2>
+        <p>Paragrafo 2</p>
+        <p><a class="btn btn-default" href="">Link 2</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Texto 3</h2>
+        <p>Paragrao 3</p>
+        <p><a class="btn btn-default" href="">Link 3</a></p>
+    </div>
+</div>

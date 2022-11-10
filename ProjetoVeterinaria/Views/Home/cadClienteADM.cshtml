@@ -1,0 +1,52 @@
+﻿
+@model ProjetoVeterinaria.Models.modelCliente
+
+@{
+    ViewBag.Title = "cadCliente";
+
+    List<string> tipoUsuario = new List<string>();
+
+    tipoUsuario.Add("1");
+
+    tipoUsuario.Add("2");
+
+}
+
+<h2>Cadastrar Cliente ADM</h2>
+
+@using (Html.BeginForm("cadCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(m => m.nomeCliente) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
+    <br />
+    @Html.EditorFor(m => m.nomeCliente)
+    <br />
+    @Html.LabelFor(m => m.telefoneCliente)
+    <br />
+    @Html.EditorFor(m => m.telefoneCliente)
+    <br />
+    @Html.LabelFor(m => m.cepCliente)
+    <br />
+    @Html.EditorFor(m => m.cepCliente)
+    <br />
+    @Html.LabelFor(m => m.enderecoCliente)
+    <br />
+    @Html.EditorFor(m => m.enderecoCliente)
+    <br />
+    @Html.LabelFor(m => m.usuario)
+    <br />
+    @Html.EditorFor(m => m.usuario)
+    <br />
+    @Html.LabelFor(m => m.senha)
+    <br />
+    @Html.EditorFor(m => m.senha)
+    <br />
+    @Html.Label("Escolha 1 para ADM / 2 para Usuario Normal")
+    <br />
+    @Html.DropDownListFor(m => m.TipoUsuario, new MultiSelectList(tipoUsuario))
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

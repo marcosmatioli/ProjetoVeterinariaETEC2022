@@ -1,0 +1,42 @@
+﻿@model ProjetoVeterinaria.Models.modelAtendimento
+
+@{
+    ViewBag.Title = "Cadastro de Atendimento do Animal";
+}
+
+@using (Html.BeginForm("cadAtendimento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+    @Html.Label("Cadastro do Atendimento do Animal")
+    <br />
+    <br />
+    @Html.Label("Selecione o Veterinario que atendeu")
+    <br />
+    @Html.DropDownList("Vet", "Escolha o Veterinario");
+    <br />
+    <br />
+    @Html.Label("Escolha animal atendido")
+    <br />
+    @Html.DropDownList("Animal", "Escolha o Animal");
+    <br />
+    <br />
+    @Html.Label("Data do Atendimento");
+    <br />
+    @Html.EditorFor(m => m.dataAtendimento, new { htmlAttributes = new { @type = "date" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Hora do Atendimento");
+    <br />
+    @Html.EditorFor(m => m.horaAtendimento, new { htmlAttributes = new { @type = "time" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Diagnostico do Animal");
+    <br />
+    @Html.EditorFor(m => m.Diagnostico);
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar Atendimento Veterinario" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

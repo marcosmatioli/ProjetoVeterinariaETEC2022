@@ -1,0 +1,32 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelPaciente
+
+@{
+    ViewBag.Title = "CadPaciente";
+}
+
+<h2>Cadastro do Paciente</h2>
+
+@using (Html.BeginForm("CadPaciente", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(m => m.nomePaciente) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
+    <br />
+    @Html.EditorFor(m => m.nomePaciente) 
+    <br />
+    @Html.LabelFor(m => m.enderecoPaciente)
+    <br />
+    @Html.EditorFor(m => m.enderecoPaciente)
+    <br />
+    @Html.LabelFor(m => m.telPaciente)
+    <br />
+    @Html.EditorFor(m => m.telPaciente)
+    <br />
+    @Html.LabelFor(m => m.celPaciente)
+    <br />
+    @Html.EditorFor(m => m.celPaciente)
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

@@ -1,0 +1,64 @@
+﻿@model IEnumerable < ProjetoVeterinaria.Models.modelAgendamento>
+@{
+    ViewBag.Title = "Lista de Agendamento";
+}
+
+<h2>Lista dos Agendamento do Usuario</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.codAgendamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.dataAgendamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.horaAgendamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.Reclamacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.nomeVet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.nomeAnimal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.nomeCliente)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.codAgendamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataAgendamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaAgendamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reclamacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeVet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeAnimal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomeCliente)
+            </td>
+            <td>
+                @Html.ActionLink("Atualizar", "", new { id = item.codAgendamento }) |
+                @Html.ActionLink("Excluir", "", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+

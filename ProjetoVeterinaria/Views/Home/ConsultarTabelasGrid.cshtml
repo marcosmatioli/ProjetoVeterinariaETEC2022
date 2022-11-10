@@ -1,0 +1,38 @@
+﻿@model ProjetoVeterinaria.Models.modelConsultar
+
+@{
+    ViewBag.Title = "Consultar Tabelas";
+
+    List<string> tablesConsult = new List<string>();
+
+    tablesConsult.Add("vwAtendimento");
+
+    tablesConsult.Add("vwCliente");
+
+    tablesConsult.Add("vwAnimal");
+
+    tablesConsult.Add("vwTipoAnimal");
+
+    tablesConsult.Add("vwVeterinario");
+
+    tablesConsult.Add("vwAgendamento");
+
+}
+
+<h2>Consultar Tabelas - ADM Resource</h2>
+@using (Html.BeginForm("ConsultarTabelasGrid", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.Label("Selecione a tabela que deseja visualizar em forma de grid view")
+    <br />
+    @Html.DropDownListFor(m => m.Tablenome, new MultiSelectList(tablesConsult))
+    <br />
+    <br />
+    <input type="submit" value="Consultar Tabela" class="btn btn-primary" />
+    <br />
+}
+<br />
+<br />
+@ViewBag.msg
+<br />
+<br />
+@Html.Raw(ViewBag.GridViewString)

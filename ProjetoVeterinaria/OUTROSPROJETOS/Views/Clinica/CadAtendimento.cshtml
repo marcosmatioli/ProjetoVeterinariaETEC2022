@@ -1,0 +1,41 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelAtendimento
+@{
+    ViewBag.Title = "CadAtendimento";
+}
+
+@using (Html.BeginForm("CadAtendimento", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+    @Html.Label("Cadastro do Atendimento do Médico")
+    <br />
+    <br />
+    @Html.Label("Selecione o médico que atendeu")
+    <br />
+    @Html.DropDownList("Medico", "Escolha o Medico");
+    <br />
+    <br />
+    @Html.Label("Escolha o paciente atendido")
+    <br />
+    @Html.DropDownList("Paciente", "Escolha o Paciente");
+    <br />
+    <br />
+    @Html.Label("Data do Atendimento");
+    <br />
+    @Html.EditorFor(m => m.dataAtendimento, new { htmlAttributes = new { @type = "date" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Hora do Atendimento");
+    <br />
+    @Html.EditorFor(m => m.horaAtendimento, new { htmlAttributes = new { @type = "time" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Diagnostico do Paciente");
+    <br />
+    @Html.EditorFor(m => m.Diagnostico);
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar Atendimento Médico" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

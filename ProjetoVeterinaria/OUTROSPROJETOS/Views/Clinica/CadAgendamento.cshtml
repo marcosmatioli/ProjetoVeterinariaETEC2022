@@ -1,0 +1,41 @@
+﻿@model ProjetoClinicaNoite2508.Models.ModelAgendamento
+@{
+    ViewBag.Title = "CadAgendamento";
+}
+
+@using (Html.BeginForm("CadAgendamento", "Clinica", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br />
+    @Html.Label("Agendar atendimento com o médico")
+    <br />
+    <br />
+    @Html.Label("Selecione o medico que ira fazer o atendimento")
+    <br />
+    @Html.DropDownList("Medico", "Escolha o Medico");
+    <br />
+    <br />
+    @Html.Label("Escolha o paciente que ira ser atendido");
+    <br/>
+    @Html.DropDownList("Paciente", "Escolha o Paciente");
+    <br />
+    <br />
+    @Html.Label("Data do Agendamento");
+    <br />
+    @Html.EditorFor(m => m.dataAgendamento, new { htmlAttributes = new { @type = "date" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Hora do Agendamento");
+    <br />
+    @Html.EditorFor(m => m.horaAgendamento, new { htmlAttributes = new { @type = "time" } });//time ou data
+    <br />
+    <br />
+    @Html.Label("Reclamação do paciente");
+    <br />
+    @Html.EditorFor(m => m.reclamacaoPaciente);
+    <br />
+    <br />
+    <input type="submit" value="Agendar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg

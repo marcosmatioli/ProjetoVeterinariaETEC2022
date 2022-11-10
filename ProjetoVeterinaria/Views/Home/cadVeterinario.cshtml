@@ -1,0 +1,21 @@
+﻿@model ProjetoVeterinaria.Models.modelVeterinario
+@{
+    ViewBag.Title = "Cadastro do Veterinario";
+}
+
+<h2>Cadastro do Veterinario</h2>
+
+@using (Html.BeginForm("cadVeterinario", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+    @Html.LabelFor(m => m.nomeVet) 
+    <br />
+    @Html.EditorFor(m => m.nomeVet)
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+}
+<br />
+<br />
+@ViewBag.msg
+
