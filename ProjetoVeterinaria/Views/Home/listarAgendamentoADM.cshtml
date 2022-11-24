@@ -54,8 +54,8 @@
                 @Html.DisplayFor(modelItem => item.nomeCliente)
             </td>
             <td>
-                @Html.ActionLink("Atualizar", "", new { id = item.codAgendamento }) |
-                @Html.ActionLink("Excluir", "", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                @Html.ActionLink("Atualizar", "editarAgendamento", new { id = item.codAgendamento }) |
+                @Html.ActionLink("Excluir", "excluirAgendamento", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
             </td>
         </tr>
     }

@@ -16,6 +16,8 @@
 
 @using (Html.BeginForm("cadCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary()
+
     @Html.LabelFor(m => m.nomeCliente) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
     <br />
     @Html.EditorFor(m => m.nomeCliente)
@@ -50,3 +52,6 @@
 <br />
 <br />
 @ViewBag.msg
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

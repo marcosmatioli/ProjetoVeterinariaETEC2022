@@ -6,6 +6,7 @@
 
 @using (Html.BeginForm("cadAtendimento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary()
     <br />
     @Html.Label("Cadastro do Atendimento do Animal")
     <br />
@@ -15,7 +16,7 @@
     @Html.DropDownList("Vet", "Escolha o Veterinario");
     <br />
     <br />
-    @Html.Label("Escolha animal atendido")
+    @Html.Label("Escolha o Dono e o Pet")
     <br />
     @Html.DropDownList("Animal", "Escolha o Animal");
     <br />
@@ -40,3 +41,6 @@
 <br />
 <br />
 @ViewBag.msg
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
