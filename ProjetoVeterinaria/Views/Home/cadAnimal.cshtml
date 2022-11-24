@@ -7,6 +7,8 @@
 
 @using (Html.BeginForm("cadAnimal", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary()
+
     @Html.LabelFor(m => m.nomeAnimal) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
     <br />
     @Html.EditorFor(m => m.nomeAnimal)
@@ -16,6 +18,8 @@
     @Html.DropDownList("TipoAnimal", "Tipo Animal");
     <br />
     @Html.Label("Escolha a foto do animal");
+    <br />
+    @Html.Label("Escolha a foto do animal caso não tenha deixe em branco")
     <br />
     <input type="file" name="file" id="file" />
     <br />

@@ -115,5 +115,20 @@ namespace ProjetoVeterinaria.Dados
             }
             return AtendimentoList;
         }
+        public bool deleteAtendimento(int id)
+        {
+            MySqlCommand cmd = new MySqlCommand("delete from tbAtendimento where codAtendimento=@id", con.MyConectarBD());
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+
+            int i = cmd.ExecuteNonQuery();
+            con.MyDesConectarBD();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
     }
 }

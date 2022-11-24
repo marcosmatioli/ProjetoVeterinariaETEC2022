@@ -45,12 +45,7 @@
                 @Html.DisplayFor(modelItem => item.nomeVet)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.nomeVet)
-            </td>
-            <td>
-                <!--precisa ver se vai  ter algo de excluir ou atualizar-->
-                @Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |
-                @Html.ActionLink("Excluir", "", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                @Html.DisplayFor(modelItem => item.nomeAnimal)
             </td>
         </tr>
     }

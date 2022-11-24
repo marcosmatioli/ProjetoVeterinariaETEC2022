@@ -1,14 +1,14 @@
 ﻿@model ProjetoVeterinaria.Models.modelAgendamento
 
 @{
-    ViewBag.Title = "Agendamento de consulta do Animal";
+    ViewBag.Title = "Alterar data do Agendamento";
 }
 
-@using (Html.BeginForm("cadAgendamento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("editarAgendamento", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary()
     <br />
-    @Html.Label("Agendar consulta para o animal")
+    @Html.Label("Alterar consulta para o animal")
     <br />
     <br />
     @Html.Label("Selecione o seu Veterinario que irá atender")
@@ -36,7 +36,7 @@
     @Html.EditorFor(m => m.Reclamacao);
     <br />
     <br />
-    <input type="submit" value="Cadastrar Agendamento Veterinario" class="btn btn-primary" />
+    <input type="submit" value="Alterar Consulta" class="btn btn-primary" />
 }
 <br />
 <br />

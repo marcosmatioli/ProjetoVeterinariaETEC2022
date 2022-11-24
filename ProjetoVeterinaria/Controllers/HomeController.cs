@@ -14,6 +14,7 @@ using System.Web.UI;
 using static System.Net.WebRequestMethods;
 using K4os.Compression.LZ4.Streams;
 using MySqlX.XDevAPI;
+using System.EnterpriseServices;
 
 namespace ProjetoVeterinaria.Controllers
 {
@@ -114,8 +115,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarVeterinario()
         {
             List<SelectListItem> Vet = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-          //  using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //  using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbVeterinario", con);
@@ -135,10 +136,10 @@ namespace ProjetoVeterinaria.Controllers
         }
         public void CarregarAnimal() // vai ter que criar um carregarAnimal para o ADM 
         {
-            codClienteControle = Convert.ToString(Session["codClienteLogado"]); 
+            codClienteControle = Convert.ToString(Session["codClienteLogado"]);
             List<SelectListItem> Animal = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-           // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbAnimal where codCliente = @codCliente", con);
@@ -157,14 +158,16 @@ namespace ProjetoVeterinaria.Controllers
             }
             ViewBag.Animal = new SelectList(Animal, "Value", "Text");
         }
-        public void CarregarAnimalADM() // vai ter que criar um carregarAnimal para o ADM 
+        public void CarregarAnimalClienteADM() // vai ter que criar um carregarAnimal para o ADM 
         {
             List<SelectListItem> Animal = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
+                
                 con.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from tbAnimal", con);
+                MySqlCommand cmd = new MySqlCommand("select tbAnimal.codAnimal,CONCAT('Dono: ',nomeCliente,' | Pet: ', nomeAnimal) from tbCliente inner join tbAnimal on tbAnimal.codCliente = tbCliente.codCliente;", con);
+               // MySqlCommand cmd = new MySqlCommand("select * from tbAnimal", con);
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
@@ -182,8 +185,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarCliente()
         {
             List<SelectListItem> cliente = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-           // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbCliente", con);
@@ -204,9 +207,9 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarTipoAnimal()
         {
             List<SelectListItem> TipoAnimal = new List<SelectListItem>();
-            
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-           // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+
+            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbTipoAnimal", con);
@@ -233,7 +236,7 @@ namespace ProjetoVeterinaria.Controllers
         {
             mod.TipoUsuario = Convert.ToInt16(Request["TipoUsuario"]);
             acCliente.cadastrarClienteADM(mod);
-            ViewBag.msg = "Cadastro do cliente realizado com sucesso!";
+            ViewBag.msg = "Cadastro realizado com sucesso!";
             return View();
         }
         public ActionResult cadCliente()
@@ -354,7 +357,7 @@ namespace ProjetoVeterinaria.Controllers
         }
         public ActionResult cadAtendimento()
         {
-            CarregarAnimal();
+            CarregarAnimalClienteADM();
             CarregarVeterinario();
             return View();
         }
@@ -362,7 +365,7 @@ namespace ProjetoVeterinaria.Controllers
         public ActionResult cadAtendimento(modelAtendimento mod)
         {
             CarregarVeterinario();
-            CarregarAnimal();
+            CarregarAnimalClienteADM();
 
             mod.codVet = Request["Vet"];
             mod.codAnimal = Request["Animal"];
@@ -382,34 +385,29 @@ namespace ProjetoVeterinaria.Controllers
         }
         public ActionResult cadAgendamento()
         {
-            codClienteControle = Convert.ToString(Session["codClienteLogado"]);
-            if (codClienteControle == "1")
+            CarregarVeterinario();
+            if (Convert.ToString(Session["codClienteLogado"]) == "1")
             {
-                CarregarAnimalADM();
+                CarregarAnimalClienteADM();
             }
             else
             {
                 CarregarAnimal();
             }
-            CarregarVeterinario();
             return View();
         }
         [HttpPost]
         public ActionResult cadAgendamento(modelAgendamento mod)
-        { 
-            codClienteControle = Convert.ToString(Session["codClienteLogado"]); 
-            if (codClienteControle == "1")
+        {
+            CarregarVeterinario();
+            if (Convert.ToString(Session["codClienteLogado"]) == "1")
             {
-                CarregarAnimalADM();
+                CarregarAnimalClienteADM();
             }
             else
             {
                 CarregarAnimal();
             }
-
-            CarregarVeterinario();
-            
-
             mod.codVet = Request["Vet"];
             mod.codAnimal = Request["Animal"];
             mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
@@ -418,7 +416,7 @@ namespace ProjetoVeterinaria.Controllers
             if (mod.TemAgendamento)
             {
                 acAgendamento.cadAgendamento(mod);
-                ViewBag.Message = "Horario de agendamento disponivel, agendamento com sucesso";
+                ViewBag.Message = "Horario de agendamento disponivel, agendamento realizado com sucesso!";
             }
             else
             {
@@ -430,19 +428,19 @@ namespace ProjetoVeterinaria.Controllers
         {
             codClienteControle = Convert.ToString(Session["codClienteLogado"]);
             //codClienteControle = acCliente.GetcodCliente(mod);
-            return View(acCliente.GetAnimalUsuario(mod,codClienteControle));
+            return View(acCliente.GetAnimalUsuario(mod, codClienteControle));
         }
         public ActionResult excluirAnimal(int id)
         {
             acAnimal.deleteAnimal(id);
             return RedirectToAction("ListarAnimalUsuario");
         }
-        public ActionResult editarAnimal(string id,modelAnimal cm,modelCliente mod)
+        public ActionResult editarAnimal(string id, modelAnimal cm, modelCliente mod)
         {
             CarregarAnimal();
             CarregarCliente();
             CarregarTipoAnimal();
-            return View(acAnimal.GetPet(cm,mod).Find(model => model.codAnimal == id));
+            return View(acAnimal.GetPet(cm, mod).Find(model => model.codAnimal == id));
         }
         [HttpPost]
         public ActionResult editarAnimal(string id, modelAnimal mod, HttpPostedFileBase file)
@@ -459,11 +457,11 @@ namespace ProjetoVeterinaria.Controllers
                 file.SaveAs(_path);
                 mod.fotoAnimal = file2;
             }
-            else 
+            else
             {
                 string file2 = "/Imagens/image-not-found.jpg";
                 mod.fotoAnimal = file2;
-            }    
+            }
             mod.codAnimal = id.ToString();
             acAnimal.atualizarAnimal(mod);
             ViewBag.msg = "Edição feita com sucesso";
@@ -501,6 +499,66 @@ namespace ProjetoVeterinaria.Controllers
         {
             mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
             return View(AcAtendimento.GetAtendimentoADM(mod));
+        }
+        public ActionResult excluirAtendimentoADM(int id)
+        {
+            AcAtendimento.deleteAtendimento(id);
+            return RedirectToAction("listarAtendimentoADM");
+        }
+        public ActionResult excluirAgendamento(int id)
+        {
+            acAgendamento.deleteAgendamento(id);
+            if (Convert.ToString(Session["codClienteLogado"]) == "1")
+            {
+                return RedirectToAction("listarAgendamentoADM");
+            }
+            else
+            {
+                return RedirectToAction("listarAgendamento");
+            }
+        }
+        public ActionResult editarAgendamento(string id, modelAgendamento mod)
+        {
+            mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
+            CarregarVeterinario();
+            if (Convert.ToString(Session["codClienteLogado"]) == "1")
+            {
+                CarregarAnimalClienteADM();
+            }
+            else
+            {
+                CarregarAnimal();
+            }
+            return View(acAgendamento.GetAgendamento(mod).Find(model => model.codAgendamento == id));
+        }
+        [HttpPost]
+        public ActionResult editarAgendamento(modelAgendamento mod,int id)
+        {
+            mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
+            CarregarVeterinario();
+            if (Convert.ToString(Session["codClienteLogado"]) == "1")
+            {
+                CarregarAnimalClienteADM();
+            }
+            else
+            {
+                CarregarAnimal();
+            }
+            mod.codVet = Request["Vet"];
+            mod.codAnimal = Request["Animal"];
+            mod.codAgendamento = id.ToString();
+            //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
+            acAgendamento.TemAgendamento(mod);
+            if (mod.TemAgendamento)
+            {
+                acAgendamento.editarAgendamento(mod);
+                ViewBag.Message = "Horario de agendamento disponivel, agendamento alterado com sucesso";
+            }
+            else
+            {
+                ViewBag.Message = "Horario do agendamento indisponivel, agendamento não realizado. Por favor escolha outra data/horario.";
+            }
+            return View();
         }
     }
 }

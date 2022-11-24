@@ -48,9 +48,10 @@
                 @Html.DisplayFor(modelItem => item.nomeVet)
             </td>
             <td>
-                <!--precisa ver se vai  ter algo de excluir ou atualizar-->
-                @Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |
-                @Html.ActionLink("Excluir", "", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                <!--atualizar o atendimento não me parece algo bom, se o atendimento foi feito então está feito até pq o diagnostico foi feito por um veterinario
+                    si pa nem excluir atendimento, mais isso pode ser possivel pq ai ele exclui caso tenha feito errado na hora-->
+                @*@Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |*@
+                @Html.ActionLink("Excluir", "excluirAtendimentoADM", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
             </td>
         </tr>
     }

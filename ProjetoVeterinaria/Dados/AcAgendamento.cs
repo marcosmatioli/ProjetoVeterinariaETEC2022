@@ -151,5 +151,41 @@ namespace ProjetoVeterinaria.Dados
             else
                 return false;
         }
+        public bool deleteAgendamento(int id)
+        {
+            MySqlCommand cmd = new MySqlCommand("delete from tbAgendamento where codAgendamento=@id", con.MyConectarBD());
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            int i = cmd.ExecuteNonQuery();
+            con.MyDesConectarBD();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
+        public bool editarAgendamento(modelAgendamento mod)
+        {
+            MySqlCommand cmd = new MySqlCommand("update tbAgendamento set dataAgendamento=@dataAgendamento,horaAgendamento=@horaAgendamento,codAnimal=@codAnimal," +
+                "codVet=@codVet,Reclamacao=@Reclamacao,codCliente=@codCliente where codAgendamento=@codAgendamento", con.MyConectarBD());
+
+            cmd.Parameters.Add("@codAgendamento", MySqlDbType.VarChar).Value = mod.codAgendamento;
+            cmd.Parameters.Add("@dataAgendamento", MySqlDbType.VarChar).Value = mod.dataAgendamento;
+            cmd.Parameters.Add("@horaAgendamento", MySqlDbType.VarChar).Value = mod.horaAgendamento;
+            cmd.Parameters.Add("@codAnimal", MySqlDbType.VarChar).Value = mod.codAnimal;
+            cmd.Parameters.Add("@codVet", MySqlDbType.VarChar).Value = mod.codVet;
+            cmd.Parameters.Add("@Reclamacao", MySqlDbType.VarChar).Value = mod.Reclamacao;
+            cmd.Parameters.Add("@codCliente", MySqlDbType.VarChar).Value = mod.codCliente;
+
+            int i = cmd.ExecuteNonQuery();
+
+            con.MyDesConectarBD();
+
+            if (i >= 1)
+                return true;
+            else
+                return false;
+        }
     }
 }

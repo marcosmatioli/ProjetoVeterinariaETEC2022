@@ -238,6 +238,7 @@
     <Content Include="Views\Home\cadClienteADM.cshtml" />
     <Content Include="Views\Home\listarAtendimento.cshtml" />
     <Content Include="Views\Home\listarAtendimentoADM.cshtml" />
+    <Content Include="Views\Home\editarAgendamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model IEnumerable < ProjetoVeterinaria.Models.modelAgendamento>
+﻿@model IEnumerable<ProjetoVeterinaria.Models.modelAgendamento>
 @{
     ViewBag.Title = "Lista de Agendamento";
 }
@@ -54,11 +54,13 @@
                 @Html.DisplayFor(modelItem => item.nomeCliente)
             </td>
             <td>
-                @Html.ActionLink("Atualizar", "", new { id = item.codAgendamento }) |
-                @Html.ActionLink("Excluir", "", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
+                @Html.ActionLink("Atualizar", "editarAgendamento", new { id = item.codAgendamento }) |
+                @Html.ActionLink("Excluir", "excluirAgendamento", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
             </td>
         </tr>
     }
 
 </table>
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
