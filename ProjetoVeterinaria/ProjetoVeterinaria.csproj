@@ -193,9 +193,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagens\73961.jpg" />
-    <Content Include="Imagens\cadCliente.png" />
-    <Content Include="Imagens\dogCad.jpg" />
+    <Content Include="Imagens\dogCadCli.jpg" />
     <Content Include="Imagens\pet.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

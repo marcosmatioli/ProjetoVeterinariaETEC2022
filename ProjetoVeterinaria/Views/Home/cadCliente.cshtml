@@ -13,8 +13,6 @@
 <link rel="stylesheet" href="~/Content/StyleCadastros.css">
 @using (Html.BeginForm("cadCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary()
-
     <section class="text-center text-lg-start">
 
         <!-- Jumbotron -->
@@ -28,31 +26,32 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            @Html.EditorFor(m => m.nomeCliente, new { htmlAttributes = new { id = "form3Example1", type = "text", @class = "form-control" } })
+                                            @Html.EditorFor(m => m.nomeCliente, new { htmlAttributes = new { id = "form3Example1", type = "text", @class = "form-control", required = "required", maxlength = "30" } })
                                             <label class="form-label" for="form3Example1">Nome</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            @Html.EditorFor(m => m.telefoneCliente, new { htmlAttributes = new { id = "form3Example2", type = "tel", @class = "form-control" } })
+                                            @Html.EditorFor(m => m.telefoneCliente, new { htmlAttributes = new { id = "form3Example2", type = "tel", @class = "form-control", required = "required", maxlength = "12" } })
                                             <label class="form-label" for="form3Example2">Telefone</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    @Html.EditorFor(m => m.cepCliente, new { htmlAttributes = new { id = "form3Example3", type = "text", @class = "form-control" } })
+                                    @Html.EditorFor(m => m.cepCliente, new { htmlAttributes = new { id = "form3Example3", type = "text", @class = "form-control", required = "required", maxlength = "10" } })
+                                    @Html.ValidationMessageFor(m => m.cepCliente, "", new { @class = "text-danger" })
                                     <label class="form-label" for="form3Example3">Cep</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    @Html.EditorFor(m => m.enderecoCliente, new { htmlAttributes = new { id = "form3Example4", type = "text", @class = "form-control" } })
+                                    @Html.EditorFor(m => m.enderecoCliente, new { htmlAttributes = new { id = "form3Example4", type = "text", @class = "form-control", required = "required", maxlength = "50" } })
                                     <label class="form-label" for="form3Example4">Logradouro</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    @Html.EditorFor(m => m.usuario, new { htmlAttributes = new { id = "form3Example5", type = "text", @class = "form-control" } })
+                                    @Html.EditorFor(m => m.usuario, new { htmlAttributes = new { id = "form3Example5", type = "text", @class = "form-control", required = "required", maxlength = "50" } })
                                     <label class="form-label" for="form3Example5">Usuário</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    @Html.EditorFor(m => m.senha, new { htmlAttributes = new { id = "form3Example6", type = "password", @class = "form-control" } })
+                                    @Html.EditorFor(m => m.senha, new { htmlAttributes = new { id = "form3Example6", type = "password", @class = "form-control", required = "required", maxlength = "50" } })
                                     <label class="form-label" for="form3Example1">Senha</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
@@ -63,7 +62,7 @@
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="~/Imagens/73961.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+                    <img src="~/Imagens/dogCadCli.jpg" class="w-100 rounded-4 shadow-4" alt="" />
                 </div>
             </div>
         </div>
