@@ -43,7 +43,6 @@ namespace ProjetoVeterinaria.Dados
             cmd.Parameters.Add("@usuario", MySqlDbType.VarChar).Value = cm.usuario;
             cmd.Parameters.Add("@senha", MySqlDbType.VarChar).Value = cm.senha;
             cmd.Parameters.Add("@TipoUsuario", MySqlDbType.VarChar).Value = cm.TipoUsuario;
-            
 
             cmd.ExecuteNonQuery();
             con.MyDesConectarBD();
