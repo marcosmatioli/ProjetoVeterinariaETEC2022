@@ -1,23 +1,48 @@
 ﻿@model ProjetoVeterinaria.Models.modelVeterinario
 @{
     ViewBag.Title = "Cadastro do Veterinario";
+    Layout = null;
 }
-
-<h2>Cadastro do Veterinario</h2>
-
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+<!-- MDB -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" /><!-- Section: Design Block -->
+<link rel="stylesheet" href="~/Content/StyleCadastros.css">
 @using (Html.BeginForm("cadVeterinario", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary()
-    @Html.LabelFor(m => m.nomeVet)
-    <br />
-    @Html.EditorFor(m => m.nomeVet)
-    <br />
-    <br />
-    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    <section class="text-center text-lg-start">
+        <!-- Jumbotron -->
+        <div class="container py-4">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card cascading-right" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
+                        <div class="card-body p-5 shadow-5 text-center">
+                            <h2 class="fw-bold mb-5">Cadastro do Veterinario</h2>
+                            <form>
+                                <div class="form-outline mb-4">
+                                    @Html.ValidationSummary()
+                                    @Html.EditorFor(m => m.nomeVet, new { htmlAttributes = new { id = "form3Example1", type = "text", @class = "form-control", required = "required", maxlength = "100" } })
+                                    <label class="form-label" for="form3Example1">Nome</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
+                            </form>
+                            @ViewBag.msg
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="~/Imagens/vetCad.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+                </div>
+            </div>
+        </div>
+        <!-- Jumbotron -->
+    </section>
 }
-<br />
-<br />
-@ViewBag.msg
+<!-- Section: Design Block -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

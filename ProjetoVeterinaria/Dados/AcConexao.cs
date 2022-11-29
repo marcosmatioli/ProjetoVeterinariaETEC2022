@@ -10,8 +10,8 @@ namespace ProjetoVeterinaria.Dados
 {
     public class AcConexao
     {
-        MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M");
-        //MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678");
+        //MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M");
+        MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678");
         public static string msg;
 
         public MySqlConnection MyConectarBD() //Método: MyConectarBD()
