@@ -1,33 +1,85 @@
 ﻿@{
     ViewBag.Title = "Recursos ADM";
+    Layout = null;
 }
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="~/Content/dashboard.css">
 <!--PAGINA PARA USUARIO ADMINISTRADORES-->
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Colocar aqui as coisas que um ADM pode fazer</p>
-<div class="jumbotron">
-    <h1>Clinica Veterinaria</h1>
-    <p class="lead">O melhor para o seu pet é aqui!!</p>
+<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+               PET CARE
+            </a>
+        </div>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Session["usuarioLogado"]<b class="fa fa-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="fa fa-fw fa-user"></i> Edit Profile</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-cog"></i> Change Password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="~/Home/Logout"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav side-nav">
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-1"><i class="fa fa-fw fa-search"></i>LISTAR<i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <ul id="submenu-1" class="collapse">
+                        <li><a href="~/Home/ListarTipoAnimal"><i class="fa fa-angle-double-right"></i> TIPO ANIMAL</a></li>
+                        <li><a href="~/Home/ListarAnimalUsuario"><i class="fa fa-angle-double-right"></i> ANIMAL DO CLIENTE</a></li>
+                        <li><a href="~/Home/listarAgendamentoADM"><i class="fa fa-angle-double-right"></i> AGENDAMENTO</a></li>
+                        <li><a href="~/Home/listarAtendimentoADM"><i class="fa fa-angle-double-right"></i> ATENDIMENTO</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" data-toggle="collapse" data-target="#submenu-2"><i class="fa fa-fw fa-user-plus"></i>  CADASTROS <i class="fa fa-fw fa-angle-down pull-right"></i></a>
+                    <ul id="submenu-2" class="collapse">
+                        <li><a href="~/Home/cadCliente"><i class="fa fa-angle-double-right"></i> CLIENTE</a></li>
+                        <li><a href="~/Home/cadClienteADM"><i class="fa fa-angle-double-right"></i> ADMINISTRADOR</a></li>
+                        <li><a href="~/Home/cadVeterinario"><i class="fa fa-angle-double-right"></i> VETERINÁRIO</a></li>
+                        <li><a href="~/Home/cadTipoAnimal"><i class="fa fa-angle-double-right"></i> TIPO ANIMAL</a></li>
+                        <li><a href="~/Home/cadAtendimento"><i class="fa fa-angle-double-right"></i> ATENDIMENTO</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="~/Home/ConsultarTabelasGrid"><i class="fa fa-fw fa-star"></i> CONSULTAS</a>
+                </li>               
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
 
-    <p>@Html.ActionLink("Cadastro de Cliente (Versão Cliente)", "cadCliente")</p>
-
-    <p>@Html.ActionLink("Cadastro de Cliente (Versão ADM para escolher o tipo de usuario)", "cadClienteADM")</p>
-
-    <p>@Html.ActionLink("Cadastro de Veterinario", "cadVeterinario")</p>
-
-    <p>@Html.ActionLink("Cadastro de Tipo de Animal", "cadTipoAnimal")</p>
-
-    <p>@Html.ActionLink("Cadastro de Atendimento(Com Hora e Data)", "cadAtendimento")</p>
-
-    <p>@Html.ActionLink("Consultar Tabelas(Somente ADM - Com Grid no Banco de Dados)", "ConsultarTabelasGrid")</p>
-
-    <p>@Html.ActionLink("Lista de tipo de Animal (Somente ADM - Editar/Excluir)", "ListarTipoAnimal")</p>
-
-    <p>@Html.ActionLink("Listar de Animal do usuario (com Editar para usuario e só vai aparecer o pet do usuario em questão)", "ListarAnimalUsuario")</p>
-
-    <p>@Html.ActionLink("Lista todos os Agendamentos", "listarAgendamentoADM")</p>
-
-    <p>@Html.ActionLink("Lista todos os Atendimentos", "listarAtendimentoADM")</p>
-
-</div>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row" id="main">
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    <h1>@ViewBag.Message</h1>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+</div><!-- /#wrapper -->
+<script src="~/Scripts/dashJava.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
