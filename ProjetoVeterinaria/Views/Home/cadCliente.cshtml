@@ -10,6 +10,8 @@
 <!-- MDB -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" /><!-- Section: Design Block -->
 <link rel="stylesheet" href="~/Content/StyleCadastros.css">
+@*<iframe src="~/Home/About" title="description" style="width: 100%; z-index: 10; display:flex; min-height:300px; margin-bottom:0" seamless></iframe>*@
+
 @using (Html.BeginForm("cadCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <section class="text-center text-lg-start">
@@ -53,7 +55,7 @@
                                     <label class="form-label" for="form3Example1">Senha</label>
                                 </div>
                                 <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
-                            </form>
+                              </form>
                             @ViewBag.msg
                         </div>
                     </div>
@@ -67,8 +69,8 @@
         <!-- Jumbotron -->
     </section>
 }
-    <!-- Section: Design Block -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+<!-- Section: Design Block -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

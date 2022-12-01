@@ -1,6 +1,7 @@
 ﻿@model ProjetoVeterinaria.Models.modelConsultar
 
 @{
+    Layout = null;
     ViewBag.Title = "Consultar Tabelas";
 
     List<string> tablesConsult = new List<string>();
@@ -22,17 +23,25 @@
 <h2>Consultar Tabelas - ADM Resource</h2>
 @using (Html.BeginForm("ConsultarTabelasGrid", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.Label("Selecione a tabela que deseja visualizar em forma de grid view")
-    <br />
-    @Html.DropDownListFor(m => m.Tablenome, new MultiSelectList(tablesConsult))
-    <br />
-    <br />
-    <input type="submit" value="Consultar Tabela" class="btn btn-primary" />
-    <br />
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <!-- Page Heading -->
+            <div class="row" id="main">
+                <div class="col-sm-12 col-md-12 well" id="content">
+                    @Html.Label("Selecione a tabela que deseja visualizar em forma de grid view")
+                    @Html.DropDownListFor(m => m.Tablenome, new MultiSelectList(tablesConsult))
+                    <input type="submit" value="Consultar Tabela" class="btn btn-primary" />
+                    @ViewBag.msg
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>   
 }
 <br />
 <br />
-@ViewBag.msg
+
 <br />
 <br />
 @Html.Raw(ViewBag.GridViewString)
