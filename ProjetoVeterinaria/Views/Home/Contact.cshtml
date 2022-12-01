@@ -2,30 +2,31 @@
     ViewBag.Title = "Usuario Normal";
 }
 <!--PAGINA PARA USUARIO NORMAL-->
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<div class="jumbotron">
-    <h1>Clinica Veterinaria</h1>
-    <p class="lead">O melhor para o seu pet é aqui!!</p>
-
-    <p>@Html.ActionLink("Cadastro de Animal (Com Cadastro de Foto)", "cadAnimal")</p>
-
-    <p>@Html.ActionLink("Alterar Cliente (Somente para o cliente)", "editarCliente")</p>
-
-    <p>@Html.ActionLink("Cadastrar Agendamento (Para o cliente)", "cadAgendamento")</p>
-
-    <p>@Html.ActionLink("Listar de Animal do usuario (com Editar para usuario e só vai aparecer o pet do usuario em questão)", "ListarAnimalUsuario")</p>
-
-    <p>@Html.ActionLink("Listar Agendamentos (do usuario logado / mas tem o listar todos os agendamentos para o ADM)", "listarAgendamento")</p>
-
-    <p>@Html.ActionLink("Listar todos os atendimentos do usuario logado", "listarAtendimento")</p>
-
-
-
+<div class="jumbotron" style="background-color: #334c64">
+    <h1 class="display-4"><span style="color:white">@ViewBag.Message</span></h1>
+    <hr class="my-4" style="background-color:white">
+    <p class="lead" style="color:white">O melhor para o seu pet é aqui!!</p>
+    <p class="lead">
+        <img src="~/Imagens/admdog.png" style="position:fixed;right:0;bottom:1px;height:300px" />
+    </p>
 </div>
-<br />
-<br />
+
+@*<div class="jumbotron">
+        <h1>Clinica Veterinaria</h1>
+        <p class="lead">O melhor para o seu pet é aqui!!</p>
+
+        <p>@Html.ActionLink("Cadastro de Animal (Com Cadastro de Foto)", "cadAnimal")</p>
+
+        <p>@Html.ActionLink("Alterar Cliente (Somente para o cliente)", "editarCliente")</p>
+
+        <p>@Html.ActionLink("Cadastrar Agendamento (Para o cliente)", "cadAgendamento")</p>
+
+        <p>@Html.ActionLink("Listar de Animal do usuario (com Editar para usuario e só vai aparecer o pet do usuario em questão)", "ListarAnimalUsuario")</p>
+
+        <p>@Html.ActionLink("Listar Agendamentos (do usuario logado / mas tem o listar todos os agendamentos para o ADM)", "listarAgendamento")</p>
+
+        <p>@Html.ActionLink("Listar todos os atendimentos do usuario logado", "listarAtendimento")</p>
+    </div>*@
 @if (Session["tipoLogado"].ToString() == "1")
 {
     <p>Acessar recursos de ADM</p>

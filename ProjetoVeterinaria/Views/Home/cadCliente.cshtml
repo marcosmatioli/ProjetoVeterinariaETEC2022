@@ -54,8 +54,17 @@
                                     @Html.EditorFor(m => m.senha, new { htmlAttributes = new { id = "form3Example6", type = "password", @class = "form-control", required = "required", maxlength = "50" } })
                                     <label class="form-label" for="form3Example1">Senha</label>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-block mb-4">Cadastrar</button>
-                              </form>
+                                <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: #a2ddd2">Cadastrar</button>
+                                @if (Session["usuarioLogado"] != null && Session["tipoLogado"].ToString() != "2")
+                                {
+                                    <a href="~/Home/About" class="btn btn-primary btn-block mb-4" style="background-color: #a2ddd2">Voltar</a>
+
+                                }
+                                else
+                                {
+                                    <a href="~/Home/Index" class="btn btn-primary btn-block mb-4" style="background-color: #a2ddd2">Voltar</a>
+                                }
+                            </form>
                             @ViewBag.msg
                         </div>
                     </div>

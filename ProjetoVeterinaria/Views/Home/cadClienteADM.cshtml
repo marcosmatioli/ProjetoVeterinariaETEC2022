@@ -1,5 +1,4 @@
-﻿
-@model ProjetoVeterinaria.Models.modelCliente
+﻿@model ProjetoVeterinaria.Models.modelCliente
 
 @{
     ViewBag.Title = "cadCliente";
@@ -9,49 +8,81 @@
     tipoUsuario.Add("1");
 
     tipoUsuario.Add("2");
+    Layout = null;
 
 }
-
-<h2>Cadastrar Cliente ADM</h2>
+<meta charset='UTF-8'>
+<link rel="stylesheet" href="~/Content/styleLogin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 @using (Html.BeginForm("cadCliente", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary()
-
-    @Html.LabelFor(m => m.nomeCliente) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
-    <br />
-    @Html.EditorFor(m => m.nomeCliente)
-    <br />
-    @Html.LabelFor(m => m.telefoneCliente)
-    <br />
-    @Html.EditorFor(m => m.telefoneCliente)
-    <br />
-    @Html.LabelFor(m => m.cepCliente)
-    <br />
-    @Html.EditorFor(m => m.cepCliente)
-    <br />
-    @Html.LabelFor(m => m.enderecoCliente)
-    <br />
-    @Html.EditorFor(m => m.enderecoCliente)
-    <br />
-    @Html.LabelFor(m => m.usuario)
-    <br />
-    @Html.EditorFor(m => m.usuario)
-    <br />
-    @Html.LabelFor(m => m.senha)
-    <br />
-    @Html.EditorFor(m => m.senha)
-    <br />
-    @Html.Label("Escolha 1 para ADM / 2 para Usuario Normal")
-    <br />
-    @Html.DropDownListFor(m => m.TipoUsuario, new MultiSelectList(tipoUsuario))
-    <br />
-    <br />
-    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+    <section class="ftco-section" style="padding: 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="img" style="background-image: url(/Imagens/dogAdm.jpg);">
+                        </div>
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Cadastro Administrador</h3>
+                                </div>
+                            </div>
+                            <form action="#" class="signin-form">
+                                <div class="form-group mb-3">
+                                    <label class="label" for="nome">Nome</label>
+                                    @Html.EditorFor(x => x.nomeCliente, new { htmlAttributes = new { id = "nome", type = "text", @class = "form-control", placeholder = "Nome", required = "required" } })
+                                    @Html.ValidationMessageFor(x => x.nomeCliente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="tel">Telefone</label>
+                                    @Html.EditorFor(x => x.telefoneCliente, new { htmlAttributes = new { id = "tel", type = "tel", @class = "form-control", placeholder = "Telefone", required = "required", maxlength = "12" } })
+                                    @Html.ValidationMessageFor(x => x.telefoneCliente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="cep">Cep</label>
+                                    @Html.EditorFor(x => x.cepCliente, new { htmlAttributes = new { id = "cep", type = "text", @class = "form-control", placeholder = "Cep", required = "required", maxlength = "10" } })
+                                    @Html.ValidationMessageFor(x => x.cepCliente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="log">Logradouro</label>
+                                    @Html.EditorFor(x => x.enderecoCliente, new { htmlAttributes = new { id = "log", type = "text", @class = "form-control", placeholder = "Logradouro", required = "required", maxlength = "50" } })
+                                    @Html.ValidationMessageFor(x => x.enderecoCliente, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="user">Usuário</label>
+                                    @Html.EditorFor(x => x.usuario, new { htmlAttributes = new { id = "user", type = "text", @class = "form-control", placeholder = "Usuário", required = "required", maxlength = "50" } })
+                                    @Html.ValidationMessageFor(x => x.usuario, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="senha">Senha</label>
+                                    @Html.EditorFor(x => x.senha, new { htmlAttributes = new { id = "senha", type = "password", @class = "form-control", placeholder = "Senha", required = "required", maxlength = "50" } })
+                                    @Html.ValidationMessageFor(x => x.senha, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="tipo">Tipo Usuário (Escolha 1 para ADM e 2 para Usuário Comum)</label>
+                                    @Html.DropDownListFor(m => m.TipoUsuario, new MultiSelectList(tipoUsuario), htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => x.TipoUsuario, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Cadastrar</button>
+                                    <p>@ViewBag.Message</p>
+                                </div>
+                            </form>
+                            <a href="~/Home/About" class="form-control btn btn-primary rounded submit px-3">Voltar</a>
+                            @ViewBag.msg
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 }
-<br />
-<br />
-@ViewBag.msg
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
