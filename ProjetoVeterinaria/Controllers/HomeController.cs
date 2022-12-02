@@ -839,8 +839,8 @@ namespace ProjetoVeterinaria.Controllers
                 {
                     CarregarAnimal();
                 }
-                mod.codVet = Request["Vet"];
-                mod.codAnimal = Request["Animal"];
+                mod.codVet = Request["codVet"];
+                mod.codAnimal = Request["codAnimal"];
                 mod.codAgendamento = id.ToString();
                 //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
                 acAgendamento.TemAgendamento(mod);

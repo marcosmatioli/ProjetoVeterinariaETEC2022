@@ -17,8 +17,7 @@
 
                     <div class="card-body">
                         <hr />
-                        <h5 class="card-title">Nome do Pet</h5>
-                        <p class="card-text">@item.nomeAnimal</p>
+                        <h5 class="card-title">Pet: @item.nomeAnimal</h5>
                         @Html.ActionLink("Atualizar", "editarAnimal", new { id = item.codAnimal }) |
                         @Html.ActionLink("Excluir", "excluirAnimal", new { id = item.codAnimal }, new { onclick = "return confirm('Deseja realmente excluir?');" })
 

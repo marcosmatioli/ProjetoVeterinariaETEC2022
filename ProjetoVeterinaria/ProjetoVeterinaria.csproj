@@ -200,8 +200,10 @@
     <Content Include="Imagens\agend.jpg" />
     <Content Include="Imagens\cadpet.png" />
     <Content Include="Imagens\cadTipoLaranja.jpg" />
+    <Content Include="Imagens\coelho.png" />
     <Content Include="Imagens\dogAdm.jpg" />
     <Content Include="Imagens\dogCadCli.jpg" />
+    <Content Include="Imagens\editar.jpg" />
     <Content Include="Imagens\patas.jpg" />
     <Content Include="Imagens\pet.png" />
     <Content Include="Imagens\rosaAtendimento.jpg" />

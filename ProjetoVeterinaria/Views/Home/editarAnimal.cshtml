@@ -1,13 +1,52 @@
 ﻿@model ProjetoVeterinaria.Models.modelAnimal
 @{
     ViewBag.Title = "Editar Animal";
+    Layout = null;
 }
-
-<h2>Editar de Animal</h2>
+<meta charset='UTF-8'>
+<link rel="stylesheet" href="~/Content/styleLogin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 @using (Html.BeginForm("editarAnimal", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.ValidationSummary()
+    <section class="ftco-section" style="padding: 2em 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="wrap d-md-flex">
+                        <div class="img" style="background-image: url(/Imagens/coelho.png);">
+                        </div>
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div class="w-100">
+                                    <h3 class="mb-4">Editar Pet</h3>
+                                </div>
+                            </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="nome">Nome do Pet</label>
+                                    @Html.EditorFor(model => model.nomeAnimal, new { htmlAttributes = new {type = "text", @class = "form-control", placeholder = "Nome do Pet", required = "required", maxlength = "100" } })
+                                    </div>
+                                <div class="form-group mb-3">
+                                    <label class="label" for="pet">Escolha a Espécie do Pet</label>
+                                    @Html.DropDownListFor(model => model.codTipoAnimal, ViewBag.TipoAnimal as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", id = "pet", style = "border: 2px solid #a2ddd2 !important;box-shadow: none !important;" })
+                                    </div>
+                                <div class="form-group mb-3">
+                                    <div class="label">  @Html.Label("Escolha a foto do seu pet a foto do animal")  </div>
+                                    <input class="label" type="file" name="file" />
+                                    @*@Html.EditorFor(model => model.fotoAnimal, new { htmlAttributes = new { name= "file", id = "file", @class = "form-control", placeholder = "Foto do Pet", required = "required",style="padding:3px" } })*@
+                                  </div>
+                                <div class="form-group">
+                                    <button type="submit" class="form-control btn btn-primary rounded submit px-3">Atualizar</button>
+                                </div>
+                            <a href="~/Home/ListarAnimalUsuario" class="form-control btn btn-primary rounded submit px-3">Voltar</a>
+                            <p>@ViewBag.msg</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @*@Html.ValidationSummary()
     @Html.LabelFor(m => m.nomeAnimal) /*aqui referencio ao ModelPaciente para fazer aparecer o que esta lá*/
     <br />
     @Html.EditorFor(m => m.nomeAnimal)
@@ -20,11 +59,9 @@
     <br />
     <input type="file" name="file" id="file" />
     <br />
-    <input type="submit" value="Atualizar Animal" class="btn btn-primary" />
+    <input type="submit" value="Atualizar Animal" class="btn btn-primary" />*@
 }
-<br />
-<br />
-@ViewBag.msg
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
