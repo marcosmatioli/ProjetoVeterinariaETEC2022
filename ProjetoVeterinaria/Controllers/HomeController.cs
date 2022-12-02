@@ -520,8 +520,8 @@ namespace ProjetoVeterinaria.Controllers
                 CarregarVeterinario();
                 CarregarAnimalClienteADM();
 
-                mod.codVet = Request["Vet"];
-                mod.codAnimal = Request["Animal"];
+                mod.codVet = Request["codVet"];
+                mod.codAnimal = Request["codAnimal"];
                 mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
                 //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
                 AcAtendimento.TemAtendimento(mod);
@@ -580,8 +580,8 @@ namespace ProjetoVeterinaria.Controllers
                 {
                     CarregarAnimal();
                 }
-                mod.codVet = Request["Vet"];
-                mod.codAnimal = Request["Animal"];
+                mod.codVet = Request["codVet"];
+                mod.codAnimal = Request["codAnimal"];
                 mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
                 //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
                 acAgendamento.TemAgendamento(mod);
@@ -713,6 +713,7 @@ namespace ProjetoVeterinaria.Controllers
         {
             try
             {
+
                 mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
                 return View(acAgendamento.GetAgendamento(mod));
             }

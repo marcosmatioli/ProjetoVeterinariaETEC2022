@@ -197,6 +197,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\admdog.png" />
+    <Content Include="Imagens\agend.jpg" />
     <Content Include="Imagens\cadpet.png" />
     <Content Include="Imagens\cadTipoLaranja.jpg" />
     <Content Include="Imagens\dogAdm.jpg" />

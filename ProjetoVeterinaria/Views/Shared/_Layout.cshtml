@@ -10,123 +10,126 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  </head>
 <body style="background-color:rgb(216, 216, 216);">
-    @if (Session["tipoLogado"].ToString() != "2")
+    @if (Session["usuarioLogado"] != null || Session["senhaLogado"] != null)
     {
-        <!--PAGINA PARA USUARIO ADMINISTRADORES-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">PET CARE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        if (Session["tipoLogado"].ToString() != "2")
+        {
+            <!--PAGINA PARA USUARIO ADMINISTRADORES-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">PET CARE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="~/Home/About">
-                            <span class="fa fa-fw fa-home"></span>
-                            HOME <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fa fa-fw fa-user-plus"></span> CADASTROS
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="~/Home/cadCliente"><span class="fa fa-angle-double-right"></span>CLIENTE</a>
-                            <a class="dropdown-item" href="~/Home/cadClienteADM"><span class="fa fa-angle-double-right"></span>ADMINISTRADOR</a>
-                            <a class="dropdown-item" href="~/Home/cadVeterinario"><span class="fa fa-angle-double-right"></span>VETERINÁRIO</a>
-                            <a class="dropdown-item" href="~/Home/cadTipoAnimal"><span class="fa fa-angle-double-right"></span>TIPO ANIMAL</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="~/Home/cadAtendimento"><span class="fa fa-angle-double-right"></span>ATENDIMENTO</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fa fa-fw fa-search"></span>
-                            LISTAR
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="~/Home/ListarTipoAnimal"><span class="fa fa-angle-double-right"></span>TIPO ANIMAL</a>
-                            <a class="dropdown-item" href="~/Home/ListarAnimalUsuario"><span class="fa fa-angle-double-right"></span>ANIMAL DO CLIENTE</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="~/Home/listarAgendamentoADM"><span class="fa fa-angle-double-right"></span>AGENDAMENTO</a>
-                            <a class="dropdown-item" href="~/Home/listarAtendimentoADM"><span class="fa fa-angle-double-right"></span>ATENDIMENTO</a>
-                        </div>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <a class="btn btn-outline-dark mr-sm-2" style="background-color:#ffffff00; color:black">@Session["usuarioLogado"] <i class="fa fa-fw fa-user"></i></a>
-                    <a class="btn btn-outline-danger my-2 my-sm-0" href="~/Home/Logout"><i class="fa fa-fw fa-power-off"></i>Sair</a>
-                </form>
-            </div>
-        </nav>
-    }
-    else
-    {
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">PET CARE</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Home/About">
+                                <span class="fa fa-fw fa-home"></span>
+                                HOME <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-fw fa-user-plus"></span> CADASTROS
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="~/Home/cadCliente"><span class="fa fa-angle-double-right"></span>CLIENTE</a>
+                                <a class="dropdown-item" href="~/Home/cadClienteADM"><span class="fa fa-angle-double-right"></span>ADMINISTRADOR</a>
+                                <a class="dropdown-item" href="~/Home/cadVeterinario"><span class="fa fa-angle-double-right"></span>VETERINÁRIO</a>
+                                <a class="dropdown-item" href="~/Home/cadTipoAnimal"><span class="fa fa-angle-double-right"></span>TIPO ANIMAL</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="~/Home/cadAtendimento"><span class="fa fa-angle-double-right"></span>ATENDIMENTO</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-fw fa-search"></span>
+                                LISTAR
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="~/Home/ListarTipoAnimal"><span class="fa fa-angle-double-right"></span>TIPO ANIMAL</a>
+                                <a class="dropdown-item" href="~/Home/ListarAnimalUsuario"><span class="fa fa-angle-double-right"></span>ANIMAL DO CLIENTE</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="~/Home/listarAgendamentoADM"><span class="fa fa-angle-double-right"></span>AGENDAMENTO</a>
+                                <a class="dropdown-item" href="~/Home/listarAtendimentoADM"><span class="fa fa-angle-double-right"></span>ATENDIMENTO</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <a class="btn btn-outline-dark mr-sm-2" style="background-color:#ffffff00; color:black">@Session["usuarioLogado"] <i class="fa fa-fw fa-user"></i></a>
+                        <a class="btn btn-outline-danger my-2 my-sm-0" href="~/Home/Logout"><i class="fa fa-fw fa-power-off"></i>Sair</a>
+                    </form>
+                </div>
+            </nav>
+        }
+        else
+        {
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">PET CARE</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="~/Home/Contact">
-                            <span class="fa fa-fw fa-home"></span>
-                            HOME <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fa fa-fw fa-user-plus"></span> Cadastros
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="~/Home/cadAnimal"><span class="fa fa-paw"></span> Cadastrar Pet</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="~/Home/cadAgendamento"><i class="fa fa-plus-circle"></i> Agendar Consulta</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fa fa-fw fa-search"></span>
-                            Consultar Dados
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="~/Home/ListarAnimalUsuario"><span class="fa fa-paw"></span> Meus Pets</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="~/Home/listarAgendamento"><span class="fa fa-star"></span> Meus Agendamentos</a>
-                            <a class="dropdown-item" href="~/Home/listarAtendimento"><span class="fa fa-check-square"></span> Meus Atendimentos</a>
-                        </div>
-                    </li>
-                    @*<li>
-                        <a href="~/Home/editarCliente"><span class=""></span>Alterar Meus Dados</a>
-                     </li>*@
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <a class="btn btn-outline-dark mr-sm-2" style="background-color:#ffffff00; color:black">@Session["usuarioLogado"] <i class="fa fa-fw fa-user"></i></a>
-                    <a class="btn btn-outline-danger my-2 my-sm-0" href="~/Home/Logout"><i class="fa fa-fw fa-power-off"></i>Sair</a>
-                </form>
-            </div>
-        </nav>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="~/Home/Contact">
+                                <span class="fa fa-fw fa-home"></span>
+                                HOME <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-fw fa-user-plus"></span> Cadastros
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="~/Home/cadAnimal"><span class="fa fa-paw"></span> Cadastrar Pet</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="~/Home/cadAgendamento"><i class="fa fa-plus-circle"></i> Agendar Consulta</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fa fa-fw fa-search"></span>
+                                Consultar Dados
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="~/Home/ListarAnimalUsuario"><span class="fa fa-paw"></span> Meus Pets</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="~/Home/listarAgendamento"><span class="fa fa-star"></span> Meus Agendamentos</a>
+                                <a class="dropdown-item" href="~/Home/listarAtendimento"><span class="fa fa-check-square"></span> Meus Atendimentos</a>
+                            </div>
+                        </li>
+                        @*<li>
+                               <a href="~/Home/editarCliente"><span class=""></span>Alterar Meus Dados</a>
+                            </li>*@
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <a class="btn btn-outline-dark mr-sm-2" style="background-color:#ffffff00; color:black">@Session["usuarioLogado"] <i class="fa fa-fw fa-user"></i></a>
+                        <a class="btn btn-outline-danger my-2 my-sm-0" href="~/Home/Logout"><i class="fa fa-fw fa-power-off"></i>Sair</a>
+                    </form>
+                </div>
+            </nav>
+        }
     }
-    <div class="container body-content">
-        <!--esse renderBody é o que faz renderizar uma view é importante ele para fazer aparecer a view-->
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>
-                &copy; @DateTime.Now.Year
-                - Projeto Final Etec Professor Basilides de Godoy
-                - Projeto Clinica Veterinaria
-            </p>
-        </footer>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+        <div class="container body-content">
+            <!--esse renderBody é o que faz renderizar uma view é importante ele para fazer aparecer a view-->
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>
+                    &copy; @DateTime.Now.Year
+                    - Projeto Final Etec Professor Basilides de Godoy
+                    - Projeto Clinica Veterinaria
+                </p>
+            </footer>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
