@@ -25,18 +25,19 @@
                             <form action="#" class="signin-form">
                                 <div class="form-group mb-3">
                                     <label class="label" for="nome">Nome do Pet</label>
-                                    @Html.EditorFor(x => x.nomeAnimal, new { htmlAttributes = new { id = "nome", type = "text", @class = "form-control", placeholder = "Nome do Pet", required = "required", maxlength = "100" } })
-                                    @Html.ValidationMessageFor(x => x.nomeAnimal, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.nomeAnimal, new { htmlAttributes = new { id = "nome", type = "text", @class = "form-control", placeholder = "Nome do Pet", required = "required", maxlength = "100" } })
+                                    @Html.ValidationMessageFor(model => model.nomeAnimal, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="pet">Escolha a Espécie do Pet</label>
                                     @Html.DropDownListFor(model => model.codTipoAnimal, ViewBag.TipoAnimal as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", id = "pet", style = "border: 2px solid #a2ddd2 !important;box-shadow: none !important;" })
-                                    @Html.ValidationMessageFor(x => x.codTipoAnimal, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.codTipoAnimal, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="file">Foto do Pet</label>
-                                    @Html.EditorFor(x => x.fotoAnimal, new { htmlAttributes = new { id = "file", type = "file", @class = "form-control", placeholder = "Foto do Pet", required = "required",style="padding:3px" } })
-                                    @Html.ValidationMessageFor(x => x.fotoAnimal, "", new { @class = "text-danger" })
+                                    <div class="label">  @Html.Label("Escolha a foto do seu pet a foto do animal")  </div> 
+                                    <input class="label" type="file" name="file" />
+                                    @*@Html.EditorFor(model => model.fotoAnimal, new { htmlAttributes = new { name= "file", id = "file", @class = "form-control", placeholder = "Foto do Pet", required = "required",style="padding:3px" } })*@
+                                    @Html.ValidationMessageFor(model => model.fotoAnimal, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="form-control btn btn-primary rounded submit px-3">Cadastrar</button>

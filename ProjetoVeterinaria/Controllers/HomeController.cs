@@ -150,8 +150,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarVeterinario()
         {
             List<SelectListItem> Vet = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-           // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbVeterinario", con);
@@ -173,8 +173,8 @@ namespace ProjetoVeterinaria.Controllers
         {
             codClienteControle = Convert.ToString(Session["codClienteLogado"]);
             List<SelectListItem> Animal = new List<SelectListItem>();
-           using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-           // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+          // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbAnimal where codCliente = @codCliente", con);
@@ -196,8 +196,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarAnimalClienteADM() // vai ter que criar um carregarAnimal para o ADM 
         {
             List<SelectListItem> Animal = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
 
                 con.Open();
@@ -220,8 +220,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarCliente()
         {
             List<SelectListItem> cliente = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+             using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbCliente", con);
@@ -243,8 +243,8 @@ namespace ProjetoVeterinaria.Controllers
         {
             List<SelectListItem> TipoAnimal = new List<SelectListItem>();
 
-             using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+             using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbTipoAnimal", con);
@@ -325,7 +325,7 @@ namespace ProjetoVeterinaria.Controllers
                 CarregarTipoAnimal();
                 mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
                 //mod.codCliente = Request["Cliente"];
-                mod.codTipoAnimal = Request["TipoAnimal"];
+                mod.codTipoAnimal = Request["codTipoAnimal"];
                 //parte que pega e cria o caminho do arquivo
                 // quando cadastra tem que fazer um if aqui para ver se a pessoa escolheu a foto,
                 // se não escolheu foto tem que por uma padrão
@@ -607,7 +607,6 @@ namespace ProjetoVeterinaria.Controllers
             try
             {
                 codClienteControle = Convert.ToString(Session["codClienteLogado"]);
-                //codClienteControle = acCliente.GetcodCliente(mod);
                 return View(acCliente.GetAnimalUsuario(mod, codClienteControle));
             }
             catch
