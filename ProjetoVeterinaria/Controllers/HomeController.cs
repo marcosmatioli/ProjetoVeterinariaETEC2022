@@ -15,6 +15,7 @@ using static System.Net.WebRequestMethods;
 using K4os.Compression.LZ4.Streams;
 using MySqlX.XDevAPI;
 using System.EnterpriseServices;
+using Org.BouncyCastle.Crypto.Macs;
 
 namespace ProjetoVeterinaria.Controllers
 {
@@ -630,14 +631,14 @@ namespace ProjetoVeterinaria.Controllers
 
 
         }
-        public ActionResult editarAnimal(string id, modelAnimal cm, modelCliente mod)
+        public ActionResult editarAnimal(string id)
         {
             try
             {
                 CarregarAnimal();
                 CarregarCliente();
                 CarregarTipoAnimal();
-                return View(acAnimal.GetPet(cm, mod).Find(model => model.codAnimal == id));
+                return View(acAnimal.GetAnimal().Find(model => model.codAnimal == id));
             }
             catch
             {
@@ -679,12 +680,11 @@ namespace ProjetoVeterinaria.Controllers
             }
 
         }
-        public ActionResult editarCliente(string id, modelCliente mod)
+        public ActionResult editarCliente()
         {
             try
             {
-                mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
-                return View();
+                return View(acCliente.GetCliente().Find(model => model.codCliente == Convert.ToString(Session["codClienteLogado"])));
             }
             catch
             {
@@ -696,7 +696,7 @@ namespace ProjetoVeterinaria.Controllers
         public ActionResult editarCliente(modelCliente mod)
         {
             try
-            {
+            {                 
                 mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
                 acCliente.editarCliente(mod);
                 ViewBag.msg = "Cadastro atualizado com sucesso!";

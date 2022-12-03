@@ -23,7 +23,6 @@
                             <h2 class="fw-bold mb-5">Cadastro do tipo de Animal</h2>
                             <form>
                                 <div class="form-outline mb-4">
-                                    @Html.ValidationSummary()
                                     @Html.EditorFor(m => m.tipoAnimal, new { htmlAttributes = new { id = "form3Example1", type = "text", @class = "form-control", required = "required", maxlength = "100" } })
                                     <label class="form-label" for="form3Example1">Tipo de animal</label>
                                 </div>
@@ -36,7 +35,7 @@
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="~/Imagens/cadTipoLaranja.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+                    <img src="~/Imagens/editardograto.jpg" class="w-100 rounded-4 shadow-4" alt="" style="height:600px !important"/>
                 </div>
             </div>
         </div>

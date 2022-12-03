@@ -26,29 +26,37 @@
                             <div class="form-group mb-3">
                                 <label class="label">Selecione o seu Veterinario para o atendimento</label>
                                 @Html.DropDownListFor(model => model.codVet, ViewBag.Vet as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", style = "border: 2px solid #a2ddd2 !important;box-shadow: none !important;" })
-                                </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label class="label">Escolha Cuidador e o Pet</label>
                                 @Html.DropDownListFor(model => model.codAnimal, ViewBag.Animal as IEnumerable<SelectListItem>, htmlAttributes: new { @class = "form-control", style = "border: 2px solid #a2ddd2 !important;box-shadow: none !important;" })
-                                </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="data">Data do Agendamento</label>
                                 @Html.EditorFor(model => model.dataAgendamento, new { htmlAttributes = new { id = "data", type = "date", @class = "form-control", placeholder = "Data do Agendamento", required = "required", maxlength = "100" } })
-                               </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="hora">Hora do Agendamento</label>
                                 @Html.EditorFor(model => model.horaAgendamento, new { htmlAttributes = new { id = "hora", type = "time", @class = "form-control", placeholder = "Hora do Agendamento", required = "required", maxlength = "100" } })
-                                 </div>
+                            </div>
                             <div class="form-group mb-3">
                                 <label class="label" for="rec">Reclamação</label>
                                 @Html.TextAreaFor(model => model.Reclamacao, htmlAttributes: new { value = "Reclamção", @class = "form-control", rows = "3", align = "left", required = "required", style = " resize:none !important; border: 2px solid #a2ddd2 !important;box-shadow: none !important;" })
-                                 @*@Html.TextAreaFor(model => model.Reclamacao, new { htmlAttributes = new { id = "rec", @class = "form-control", placeholder = "Reclamação", required = "required", maxlength = "100" } })*@
+                                @*@Html.TextAreaFor(model => model.Reclamacao, new { htmlAttributes = new { id = "rec", @class = "form-control", placeholder = "Reclamação", required = "required", maxlength = "100" } })*@
 
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control btn btn-primary rounded submit px-3">Alterar</button>
                             </div>
-                            <a href="~/Home/listarAgendamento" class="form-control btn btn-primary rounded submit px-3">Voltar</a>
+                            @if (Session["usuarioLogado"] != null && Session["tipoLogado"].ToString() != "2")
+                            {
+                                <a href="~/Home/listarAgendamentoADM" class="btn btn-primary btn-block mb-4" style="background-color: #a2ddd2">Voltar</a>
+
+                            }
+                            else
+                            {
+                                <a href="~/Home/listarAgendamento" class="form-control btn btn-primary rounded submit px-3">Voltar</a>
+                            }
                             <p>@ViewBag.Message</p>
                         </div>
                     </div>

@@ -96,5 +96,31 @@ namespace ProjetoVeterinaria.Dados
             else
                 return false;
         }
+
+        public List<modelAnimal> GetAnimal()
+        {
+            //pegar tudo na tabela animal
+            List<modelAnimal> AnimalList = new List<modelAnimal>();
+            MySqlCommand cmd = new MySqlCommand("select * from tbAnimal", con.MyConectarBD());
+
+            MySqlDataAdapter sd = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sd.Fill(dt);
+            con.MyDesConectarBD();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                AnimalList.Add(
+                       new modelAnimal
+                       {
+                           codAnimal = Convert.ToString(dr["codAnimal"]),
+                           nomeAnimal = Convert.ToString(dr["nomeAnimal"]),
+                           fotoAnimal = Convert.ToString(dr["fotoAnimal"]),
+                           codTipoAnimal = Convert.ToString(dr["codTipoAnimal"]),
+                           codCliente = Convert.ToString(dr["codCliente"])
+                       });
+            }
+            return AnimalList;
+        }
     }
 }

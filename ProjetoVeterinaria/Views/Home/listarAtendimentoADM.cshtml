@@ -2,58 +2,36 @@
 @{
     ViewBag.Title = "Lista de Atendimento";
 }
+<br />
+<div class="">
+    <div class="col-lg-12">
+        <div class="row d-flex justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/Imagens/atend.png" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Pet: @Html.DisplayFor(modelItem => item.nomeAnimal)</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Veterinário: @Html.DisplayFor(modelItem => item.nomeVet)</li>
+                        <li class="list-group-item">Diagnóstico: @Html.DisplayFor(modelItem => item.Diagnostico)</li>
+                        <li class="list-group-item">Hora: @Html.DisplayFor(modelItem => item.horaAtendimento)</li>
+                        <li class="list-group-item">Data: @Html.DisplayFor(modelItem => item.dataAtendimento)</li>
+                        <li class="list-group-item">Código do Atendimento: @Html.DisplayFor(modelItem => item.codAtendimento)</li>
+                    </ul>
+                    <div class="card-body">
+                        <!--atualizar o atendimento não me parece algo bom, se o atendimento foi feito então está feito até pq o diagnostico foi feito por um veterinario
+                            si pa nem excluir atendimento, mais isso pode ser possivel pq ai ele exclui caso tenha feito errado na hora-->
+                        @*@Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |*@
+                        @Html.ActionLink("Excluir", "excluirAtendimentoADM", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
 
-<h2>Lista dos Atendimentos</h2>
+                        @*<a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>*@
+                    </div>
+                </div>
+            }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(m => m.codAtendimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.dataAtendimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.horaAtendimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.Diagnostico)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.nomeVet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.nomeAnimal)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.codAtendimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dataAtendimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaAtendimento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diagnostico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeVet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeVet)
-            </td>
-            <td>
-                <!--atualizar o atendimento não me parece algo bom, se o atendimento foi feito então está feito até pq o diagnostico foi feito por um veterinario
-                    si pa nem excluir atendimento, mais isso pode ser possivel pq ai ele exclui caso tenha feito errado na hora-->
-                @*@Html.ActionLink("Atualizar", "", new { id = item.codAtendimento }) |*@
-                @Html.ActionLink("Excluir", "excluirAtendimentoADM", new { id = item.codAtendimento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
-            </td>
-        </tr>
-    }
-
-</table>
+        </div>
+    </div>
+</div>

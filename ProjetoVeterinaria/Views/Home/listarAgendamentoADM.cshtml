@@ -2,63 +2,37 @@
 @{
     ViewBag.Title = "Lista de Agendamento";
 }
+<br />
+<div class="">
+    <div class="col-lg-12">
+        <div class="row d-flex justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="~/Imagens/agend.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">Cliente: @Html.DisplayFor(modelItem => item.nomeCliente)</h5>
+                        <p class="card-text">Pet: @Html.DisplayFor(modelItem => item.nomeAnimal)</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Veterinário: @Html.DisplayFor(modelItem => item.nomeVet)</li>
+                        <li class="list-group-item">Reclamação: @Html.DisplayFor(modelItem => item.Reclamacao)</li>
+                        <li class="list-group-item">Hora: @Html.DisplayFor(modelItem => item.horaAgendamento)</li>
+                        <li class="list-group-item">Data: @Html.DisplayFor(modelItem => item.dataAgendamento)</li>
+                        <li class="list-group-item">Código do Agendamento: @Html.DisplayFor(modelItem => item.codAgendamento)</li>
+                    </ul>
+                    <div class="card-body">
+                        @Html.ActionLink("Atualizar", "editarAgendamento", new { id = item.codAgendamento }) |
+                        @Html.ActionLink("Excluir", "excluirAgendamento", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
 
-<h2>Lista todos os Agendamento</h2>
+                        @*<a href="#" class="card-link">Card link</a>
+                      <a href="#" class="card-link">Another link</a>*@
+                    </div>
+                </div>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(m => m.codAgendamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.dataAgendamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.horaAgendamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.Reclamacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.nomeVet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.nomeAnimal)
-        </th>
-        <th>
-            @Html.DisplayNameFor(m => m.nomeCliente)
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.codAgendamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dataAgendamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.horaAgendamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Reclamacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeVet)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeAnimal)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeCliente)
-            </td>
-            <td>
-                @Html.ActionLink("Atualizar", "editarAgendamento", new { id = item.codAgendamento }) |
-                @Html.ActionLink("Excluir", "excluirAgendamento", new { id = item.codAgendamento }, new { onclick = "return confirm('Deseja realmente excluir?');" })
-            </td>
-        </tr>
-    }
+            }
+        </div>
+    </div>
+</div>
 
-</table>
 

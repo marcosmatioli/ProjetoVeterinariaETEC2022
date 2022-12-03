@@ -10,7 +10,7 @@
             @foreach (var item in Model)
             {
                 <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="~/Imagens/agend.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="~/Imagens/atend.png" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">Pet: @Html.DisplayFor(modelItem => item.nomeAnimal)</h5>
                     </div>
@@ -19,7 +19,7 @@
                         <li class="list-group-item">Diagnóstico: @Html.DisplayFor(modelItem => item.Diagnostico)</li>
                         <li class="list-group-item">Hora: @Html.DisplayFor(modelItem => item.horaAtendimento)</li>
                         <li class="list-group-item">Data: @Html.DisplayFor(modelItem => item.dataAtendimento)</li>
-                        <li class="list-group-item">Código do Agendamento: @Html.DisplayFor(modelItem => item.codAtendimento)</li>
+                        <li class="list-group-item">Código do Atendimento: @Html.DisplayFor(modelItem => item.codAtendimento)</li>
                     </ul>
                     <div class="card-body">
 
@@ -34,14 +34,3 @@
         </div>
     </div>
 </div>
-@ViewBag.msg
-@if (ViewBag.msg=="tem")
-{
-    <div class="jumbotron" style="background-color: #334c64">
-        <h1 class="display-4"><span style="color:white">Sem Agendamento Disponiveis</span></h1>
-        <hr class="my-4" style="background-color:white">
-        <p class="lead">
-            Marque uma consuta! mantenha o bem estar do seu pet!
-        </p>
-    </div>
-}
