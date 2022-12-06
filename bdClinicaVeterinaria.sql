@@ -125,3 +125,7 @@ insert into tbVeterinario(codVet,nomeVet) values (7,"Mark Sloan");
 
 #teste concat para trazer em uma tabela o nome do usuario e o pet junto e tinha que ter uma tabela separada do codigo do animal ( isso aqui demorou umas 3 horinhas humilde pra entender e fazer )
 -- select tbAnimal.codAnimal,CONCAT('Dono: ',nomeCliente,' | Pet: ', nomeAnimal) from tbCliente inner join tbAnimal on tbAnimal.codCliente = tbCliente.codCliente;
+-- select tbCliente.codCliente,CONCAT('Dono: ',nomeCliente,' | Pet: ', nomeAnimal) from tbCliente inner join tbAnimal on tbAnimal.codCliente = tbCliente.codCliente;
+
+#select que traz o codanimal
+-- select tbAnimal.codCliente from tbAnimal where codAnimal = 6;

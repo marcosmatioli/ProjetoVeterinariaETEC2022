@@ -132,6 +132,10 @@ namespace ProjetoVeterinaria.Controllers
             }
             catch
             {
+                Session["usuarioLogado"] = null;
+                Session["senhaLogado"] = null;
+                Session["tipoLogado"] = null;
+                Session["codClienteLogado"] = null;
                 return View();
             }
 
@@ -151,8 +155,8 @@ namespace ProjetoVeterinaria.Controllers
         public void CarregarVeterinario()
         {
             List<SelectListItem> Vet = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+             using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbVeterinario", con);
@@ -174,8 +178,8 @@ namespace ProjetoVeterinaria.Controllers
         {
             codClienteControle = Convert.ToString(Session["codClienteLogado"]);
             List<SelectListItem> Animal = new List<SelectListItem>();
-          using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            //  using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+          //  using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+              using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbAnimal where codCliente = @codCliente", con);
@@ -194,35 +198,11 @@ namespace ProjetoVeterinaria.Controllers
             }
             ViewBag.Animal = new SelectList(Animal, "Value", "Text");
         }
-        public void CarregarAnimalClienteADM() // vai ter que criar um carregarAnimal para o ADM 
-        {
-            List<SelectListItem> Animal = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
-            {
-
-                con.Open();
-                MySqlCommand cmd = new MySqlCommand("select tbAnimal.codAnimal,CONCAT('Dono: ',nomeCliente,' | Pet: ', nomeAnimal) from tbCliente inner join tbAnimal on tbAnimal.codCliente = tbCliente.codCliente;", con);
-                // MySqlCommand cmd = new MySqlCommand("select * from tbAnimal", con);
-                MySqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    Animal.Add(new SelectListItem
-                    {
-                        Text = rdr[1].ToString(),
-                        Value = rdr[0].ToString()
-                    });
-                }
-                con.Close();
-                con.Open();
-            }
-            ViewBag.Animal = new SelectList(Animal, "Value", "Text");
-        }
         public void CarregarCliente()
         {
             List<SelectListItem> cliente = new List<SelectListItem>();
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            // using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+             using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbCliente", con);
@@ -244,8 +224,8 @@ namespace ProjetoVeterinaria.Controllers
         {
             List<SelectListItem> TipoAnimal = new List<SelectListItem>();
 
-            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
-            //  using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+              using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
             {
                 con.Open();
                 MySqlCommand cmd = new MySqlCommand("select * from tbTipoAnimal", con);
@@ -497,6 +477,30 @@ namespace ProjetoVeterinaria.Controllers
 
 
         }
+        public void CarregarAnimalClienteADM() // vai ter que criar um carregarAnimal para o ADM 
+        {
+            List<SelectListItem> Animal = new List<SelectListItem>();
+            //using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=12345678"))
+            using (MySqlConnection con = new MySqlConnection("Server=localhost; DataBase=bdClinicaVeterinaria; User=root;pwd=rootroot1995.M"))
+            {
+
+                con.Open();
+                MySqlCommand cmd = new MySqlCommand("select tbAnimal.codAnimal,CONCAT('Dono: ',nomeCliente,' | Pet: ', nomeAnimal) from tbCliente inner join tbAnimal on tbAnimal.codCliente = tbCliente.codCliente;", con);
+                // MySqlCommand cmd = new MySqlCommand("select * from tbAnimal", con);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Animal.Add(new SelectListItem
+                    {
+                        Text = rdr[1].ToString(),
+                        Value = rdr[0].ToString(),
+                    });
+                }
+                con.Close();
+                con.Open();
+            }
+            ViewBag.Animal = new SelectList(Animal, "Value", "Text");
+        }
         public ActionResult cadAtendimento()
         {
             try
@@ -515,32 +519,36 @@ namespace ProjetoVeterinaria.Controllers
         [HttpPost]
         public ActionResult cadAtendimento(modelAtendimento mod)
         {
+            //mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
+            //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
 
-            try
-            {
-                CarregarVeterinario();
-                CarregarAnimalClienteADM();
+            CarregarVeterinario();
+            CarregarAnimalClienteADM();
+            mod.codVet = Request["codVet"];
+            mod.codAnimal = Request["codAnimal"];
+            AcAtendimento.GetCodUsuario(mod);
 
-                mod.codVet = Request["codVet"];
-                mod.codAnimal = Request["codAnimal"];
-                mod.codCliente = Convert.ToString(Session["codClienteLogado"]);
-                //PARTE DO CODIGO PARA COMPARAR SE AS DATAS SÃO IGUAIS CTRL+K e dps CTRL+U / U= descomenta / C= Comenta 
-                AcAtendimento.TemAtendimento(mod);
-                if (mod.TemAtendimento)
-                {
-                    AcAtendimento.cadAtendimento(mod);
-                    ViewBag.msg = "Horario do Atendimento Disponivel, cadastro realizado Sucesso!";
-                }
-                else
-                {
-                    ViewBag.msg = "Horario do Atendimento Indisponivel, cadastro não realizado. Por favor escolha outra data/horario.";
-                }
-                return View();
-            }
-            catch
+            AcAtendimento.TemAtendimento(mod);
+            if (mod.TemAtendimento)
             {
-                return View();
+                AcAtendimento.cadAtendimento(mod);
+                ViewBag.msg = "Horario do Atendimento Disponivel, cadastro realizado Sucesso!";
             }
+            else
+            {
+                ViewBag.msg = "Horario do Atendimento Indisponivel, cadastro não realizado. Por favor escolha outra data/horario.";
+            }
+            return View();
+
+
+            //try
+            //{
+                
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
 
 
         }

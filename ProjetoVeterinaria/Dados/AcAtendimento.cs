@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ProjetoVeterinaria.Dados
 {
@@ -129,6 +130,30 @@ namespace ProjetoVeterinaria.Dados
                 return true;
             else
                 return false;
+        }
+        public void GetCodUsuario(modelAtendimento mod)
+        {
+            MySqlCommand cmd = new MySqlCommand("select tbAnimal.codCliente from tbAnimal where codAnimal = @codAnimal;", con.MyConectarBD());
+
+            cmd.Parameters.Add("@codAnimal", MySqlDbType.VarChar).Value = mod.codAnimal;
+
+            MySqlDataReader leitor;
+
+            leitor = cmd.ExecuteReader();
+
+
+            if (leitor.HasRows)
+            {
+                while (leitor.Read())
+                {
+                    mod.codCliente = Convert.ToString(leitor["codCliente"]);
+                }
+            }
+            else
+            {
+                System.Console.WriteLine("Deu pau");
+            }
+            con.MyDesConectarBD();
         }
     }
 }
